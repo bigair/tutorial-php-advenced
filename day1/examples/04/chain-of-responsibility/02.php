@@ -9,8 +9,8 @@ class Cart
         'A0002' => 150,
         'B0001' => 300,
         'B0002' => 200,
-        'AB001' => 200,
-        'AB002' => 200,
+        'C0001' => 200,
+        'C0002' => 200,
     ];
     protected $_total = 0;
     protected $_items = [];
@@ -57,8 +57,8 @@ $cart->add('A0001', 1);
 $cart->add('A0002', 2);
 $cart->add('B0001', 1);
 $cart->add('B0002', 2);
-$cart->add('AB001', 1);
-$cart->add('AB002', 2);
+$cart->add('C0001', 1);
+$cart->add('C0002', 2);
 $cart->calculate();
 $cart->listAll();
 echo $cart->getTotal(), "\n";

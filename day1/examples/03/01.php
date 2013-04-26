@@ -1,12 +1,12 @@
 <?php
 
-$configFilePath = '.........';
+$configFilePath = 'config.json';
+$configFileType = 'json';
 $config = [];
 
 switch ($configFileType) {
-    case 'xml':
-        return parseXmlToArray(file_get_contents($configFilePath));
-        break;
+    case 'json':
+        return json_decode(file_get_contents($configFilePath));
     case 'ini':
         return parse_ini_file($configFilePath);
         break;

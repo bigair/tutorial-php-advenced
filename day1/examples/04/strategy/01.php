@@ -9,8 +9,8 @@ class Application
         $configFileType = $this->_getConfigType($configFilePath);
 
         switch ($configFileType) {
-            case 'xml':
-                $this->_config = $this->_parseXmlToArray(file_get_contents($configFilePath));
+            case 'json':
+                $this->_config = json_decode(file_get_contents($configFilePath));
                 break;
             case 'ini':
                 $this->_config = parse_ini_file($configFilePath);
@@ -25,11 +25,6 @@ class Application
 
     protected function _getConfigType($configFilePath)
     {
-        return 'xml';
-    }
-
-    protected function _parseXmlToArray($xml)
-    {
-        return [];
+        return pathinfo($configFilePath)['extension'];
     }
 }

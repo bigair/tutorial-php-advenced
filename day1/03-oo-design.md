@@ -1,35 +1,38 @@
 物件導向開發
-----------
+=========
 
-## 封裝變化的部份
+少用繼承，多用合成 (Prefer composition over inheritance)
+-----------------------------------------------------
 
-## 少用繼承，多用合成
+* 「有一個」可能比「是一個」更好
+* 繼承會導致類別爆炸
+* 合成就像組合積木
+* 資料表繼承資料庫？
+* 資料列繼承資料表？
 
-<?php
+針對介面寫程式，而不是針對實作寫程式 (Program to an interface, not an implementation)
+--------------------------------
 
-class Model
-{
-    protected $_db;
-}
+* 封裝變化
+* 不同的處理方式，相同的做法
+* 利用多型
+* 抽象化
+* 提供單一化的介面
+* 範例
+  - 測試時用 Sqlite
+  - 正式上線用 MySQL
 
-?>
+## 將類別之間解耦
 
-## 針對介面寫程式，而不是針對實作寫程式
+* 類別之間的高度依賴
+* 程式裡要寫很多不同類別的操作方式
+* 不同的操作，引入相同的介面
+* 範例： PageBulder
+  - 產生分類
+  - 產生文章
+  - 跟分類與文章的類別耦合了
 
-<?php
-
-$db = new mysqli();
-
-$db = new Db();
-
-?>
-
-## 將物件之間解耦
-
-* Blog && MySQL
-* PageBulder && Smarty
-
-## 迪米特法則 (LoD)
+## 迪米特法則 (Law of Demeter)
 
 * 用戶端知道的越少越好。
 * 儘可能把介面隱藏,只留下用戶端需要知道的。
@@ -50,40 +53,37 @@ $db = new Db();
 
 ### 介面分隔 (The Interface Segregation Principle)
 
-*
+* 用戶用不到的介面，別讓用戶知道
 
 ### 相依性倒轉 (The Dependency Inversion Principle)
 
 * 不將特定的類別寫死在程式碼裡
 
-## setter & getter
-
-* 不要為每個類別屬性都製作 setter & getter
-
 ## 程式碼語意
 
-* 方法要放在對的類別上
+* 不要為每個類別屬性都製作 setter & getter
 * 有意義的名稱
+* 方法要放在對的類別上
 
 ## 針對領域，而不是資料結構
 
-儘可能用跟領域相關的名詞來命名類別及變數，而不是用資料結構來命名。
+* 儘可能用跟領域相關的名詞來命名類別及變數，而不是用資料結構來命名。
 
 錯誤的設計：
 
-<?php
-$rootNode = new Node('root');
-$nodes = $rootNode->getTree();
-$articles = $root->getDataByNodes($nodes);
-?>
+    <?php
+    $rootNode = new Node('root');
+    $nodes = $rootNode->getTree();
+    $articles = $root->getDataByNodes($nodes);
+    ?>
 
 Node 是什麼？
 
-<?php
-$root = new Category('root');
-$category = $root->getCategory('test');
-$articles = $root->getArticlesFrom($category);
-?>
+    <?php
+    $root = new Category('root');
+    $category = $root->getCategory('test');
+    $articles = $root->getArticlesFrom($category);
+    ?>
 
 ## 保持輕巧，不要過度設計
 
