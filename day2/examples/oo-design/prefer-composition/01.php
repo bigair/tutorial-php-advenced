@@ -1,8 +1,16 @@
 <?php
 
-class Model
+class Db
 {
-    protected $_db;
+
 }
 
-?>
+class DbTable extends Db
+{
+
+}
+
+class DbRow extends Db
+{
+
+}

@@ -1,13 +1,20 @@
 <?php
 
-spl_autoload_register('loadClasses');
+defined('CLASSES_PATH') || define('CLASSES_PATH', __DIR__);
 
-function loadClasses($className)
+function loadClass($className)
 {
-    echo $className, "\n";
     $className = str_replace('\\', '/', $className);
-    spl_autoload($className);
+    $classPath = CLASSES_PATH . '/' . $className . '.php';
+    echo $classPath . PHP_EOL;
+    if (file_exists($classPath)) {
+        include $classPath;
+        return true;
+    }
+    return false;
 }
+
+spl_autoload_register('loadClass');
 
 $car = new AutoloadExample\Car();
 $human = new AutoloadExample\Human();
