@@ -9,30 +9,31 @@ PHP 高階技術課程
 * phpbrew
 * 結對編程
 
-[Day 1](day1/README.md)
+Day 1
 -----
 
 * 物件導向基礎
 * PHP 5 特色與語法
-* 物件導向開發
-* 設計模式
 
-[Day 2](day2/README.md)
+Day 2
 -----
 
+* 物件導向開發
+* 設計模式
 * 除錯及錯誤管理
 * 測試
 * 重構
-* 程式碼品質
 
-[Day 3](day3/README.md)
+Day 3
 -----
 
+* 程式碼品質
+* 套件管理
 * 程式安全
 * 效能原則
-* 套件管理
 
-[Day 4](/day4/README.md)
+Day 4
 -----
 
 * 程式架構
+* 簡易 Framework 開發
