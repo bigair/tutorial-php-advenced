@@ -1,15 +1,22 @@
 <?php
 
-namespace Strategy01;
+namespace Singleton02;
+
+include 'Singleton.php';
 
 class Application
 {
+    use \Singleton;
+
     protected $_config = [];
     protected $_appName = 'App';
 
+    private function __construct()
+    {}
+
     public function run($filePath)
     {
-        $this->_config = new Config_Json($filePath);
+        $this->_config = Config::factory($filePath);
         $this->_appName = $this->_config->appName;
         return $this;
     }
@@ -31,6 +38,17 @@ abstract class Config
         } else {
             // 丟異常？還是回傳 null ？
             return null;
+        }
+    }
+
+    public static function factory($filePath)
+    {
+        $ext = pathinfo($filePath)['extension'];
+        $className = "\\" . __NAMESPACE__ . "\\Config_" . ucfirst(strtolower($ext));
+        if (class_exists($className)) {
+            return new $className($filePath);
+        } else {
+            throw new \Exception("未知的檔案類型");
         }
     }
 }
@@ -59,7 +77,7 @@ class Config_Php extends Config
     }
 }
 
-$app = new Application();
-//echo $app->run('config.ini')->getAppName(), "\n";
-//echo $app->run('config.json')->getAppName(), "\n";
-//echo $app->run('config.php')->getAppName(), "\n";
+$app = Application::getInstance();
+echo $app->run('config.ini')->getAppName(), "\n";
+echo $app->run('config.json')->getAppName(), "\n";
+echo $app->run('config.php')->getAppName(), "\n";

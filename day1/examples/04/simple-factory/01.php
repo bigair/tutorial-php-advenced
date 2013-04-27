@@ -1,6 +1,6 @@
 <?php
 
-namespace Strategy01;
+namespace SimpleFactory01;
 
 class Application
 {
@@ -9,7 +9,7 @@ class Application
 
     public function run($filePath)
     {
-        $this->_config = new Config_Json($filePath);
+        $this->_config = Config::factory($filePath);
         $this->_appName = $this->_config->appName;
         return $this;
     }
@@ -31,6 +31,25 @@ abstract class Config
         } else {
             // 丟異常？還是回傳 null ？
             return null;
+        }
+    }
+
+    public static function factory($filePath)
+    {
+        $ext = pathinfo($filePath)['extension'];
+        switch ($ext) {
+            case 'ini':
+                return new Config_Ini($filePath);
+                break;
+            case 'json':
+                return new Config_Json($filePath);
+                break;
+            case 'php':
+                return new Config_Php($filePath);
+                break;
+            default:
+                throw new \Exception("未知的檔案類型");
+                break;
         }
     }
 }
@@ -60,6 +79,7 @@ class Config_Php extends Config
 }
 
 $app = new Application();
-//echo $app->run('config.ini')->getAppName(), "\n";
-//echo $app->run('config.json')->getAppName(), "\n";
-//echo $app->run('config.php')->getAppName(), "\n";
+echo $app->run('config.ini')->getAppName(), "\n";
+echo $app->run('config.json')->getAppName(), "\n";
+echo $app->run('config.php')->getAppName(), "\n";
+echo $app->run('config.yaml')->getAppName(), "\n";

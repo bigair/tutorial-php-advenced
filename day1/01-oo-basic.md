@@ -126,9 +126,17 @@
 
 * 不能有任何實作，只提供方法的宣告
 * 類別必須「實作」介面
+* 實作介面時，不可更動方法簽名
 * 可以實作多個介面
 * Interface 可以繼承 Interface
 * 可以用 is_a / instanceof 判斷
+* 內建 Interface
+  - Countable
+  - OuterIterator
+  - RecursiveIterator
+  - SeekableIterator
+  - SplObserver
+  - SplSubject
 
 異常
 ------

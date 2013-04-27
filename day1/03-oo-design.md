@@ -42,6 +42,7 @@
 ### 單一職責 (Single Responsibility Principle)
 
 * 只為一個目的來修改類別
+* 別讓一個類別做太多事，變成神類別
 
 ### 開放與關閉 (Open-Closed Principle)
 
@@ -53,11 +54,12 @@
 
 ### 介面分隔 (The Interface Segregation Principle)
 
-* 用戶用不到的介面，別讓用戶知道
+* 子類別用不到的介面，就分離出來
 
 ### 相依性倒轉 (The Dependency Inversion Principle)
 
 * 不將特定的類別寫死在程式碼裡
+* 由外部帶入實體，內部以抽象呈現
 
 ## 程式碼語意
 
@@ -68,22 +70,6 @@
 ## 針對領域，而不是資料結構
 
 * 儘可能用跟領域相關的名詞來命名類別及變數，而不是用資料結構來命名。
-
-錯誤的設計：
-
-    <?php
-    $rootNode = new Node('root');
-    $nodes = $rootNode->getTree();
-    $articles = $root->getDataByNodes($nodes);
-    ?>
-
-Node 是什麼？
-
-    <?php
-    $root = new Category('root');
-    $category = $root->getCategory('test');
-    $articles = $root->getArticlesFrom($category);
-    ?>
 
 ## 保持輕巧，不要過度設計
 
