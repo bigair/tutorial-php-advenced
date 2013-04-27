@@ -112,9 +112,11 @@ PHPUnit 的幾大特色
 
 為每個測試案例準備同一組測試物件，以省去在每個測試方法中建立測試物件的成本
 
-### Organizing Tests (Group 測試 ***)
+### Group Testing
 
-將同性質 (套件、專案) 的測試案例組織起來一起測試，就不需要一個一個案例測試了
+    phpunit --group fakeobject .
+
+將同性質 (套件、專案) 的測試案例組織起來一起測試
 
 ### Doubles
 

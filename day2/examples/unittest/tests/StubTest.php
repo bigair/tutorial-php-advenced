@@ -9,6 +9,9 @@ class SomeClass // 給 Mock Object 用的類別宣告，不一定要有實際內
 
 class StubTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @group fakeobject
+     */
     public function testStub()
     {
         $stub = $this->getMock('SomeClass'); // 建立 Mock Object

@@ -9,6 +9,9 @@ class Observer // 雖然實際的 Observer 未完成,但我們還是要給它一
 
 class SubjectTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @group fakeobject
+     */
     public function testUpdateIsCalledOnce()
     {
         // 建立一個 Observer 的 Mock Object
