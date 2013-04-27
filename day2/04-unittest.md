@@ -102,7 +102,7 @@ PHPUnit 的幾大特色
 
 #### 為什麼要測試錯誤
 
-* 因為不能預期使用者會按照正常方法來使用程式，所以測試各種狀況就是必要的動作
+因為不能預期使用者會按照正常方法來使用程式，所以測試各種狀況就是必要的動作
 
 #### 沒錯反而是錯的？
 
@@ -123,7 +123,7 @@ PHPUnit 的幾大特色
 * Mock Object (動態)
 * Stub (靜態)
 
-### 為什麼要 Mock Object ？
+### 為什麼需要 Mock Object
 
 #### 隔離未實作的類別
 
@@ -137,11 +137,11 @@ PHPUnit 的幾大特色
 
 透過 Xdebug 來讓 PHPUnit 找出 測試所涵蓋到的程式碼
 
-### 為什麼要知道測試涵蓋範圍?
+### 為什麼要知道測試涵蓋範圍
 
 #### 找出尚未測試的部份
 
-phpunit --coverage-html ./report SubjectTest.php
+    phpunit --coverage-html ./report SubjectTest.php
 
 * 程式碼測試的涵蓋範圍越廣，程式就更加可靠
 * 不要追求 100% 的涵蓋率
