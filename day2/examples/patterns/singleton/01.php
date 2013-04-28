@@ -2,6 +2,20 @@
 
 namespace Singleton01;
 
+$app1 = Application::getInstance();
+$app2 = Application::getInstance();
+$app3 = Application::getInstance();
+$app4 = Application::getInstance();
+
+var_dump($app1 === $app2);
+
+$newApp = NewApp::getInstance();
+
+class NewApp extends Application
+{
+
+}
+
 class Application
 {
     protected $_config = [];
@@ -9,6 +23,9 @@ class Application
     private static $_instance = null;
 
     private function __construct()
+    {}
+
+    private function __clone()
     {}
 
     public static function getInstance()
@@ -82,8 +99,3 @@ class Config_Php extends Config
         $this->_data = include($filePath);
     }
 }
-
-$app = Application::getInstance();
-echo $app->run('config.ini')->getAppName(), "\n";
-echo $app->run('config.json')->getAppName(), "\n";
-echo $app->run('config.php')->getAppName(), "\n";

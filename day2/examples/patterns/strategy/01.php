@@ -2,14 +2,22 @@
 
 namespace Strategy01;
 
+
+$app = new Application();
+echo $app->run(new Config_Json('config.json'))->getAppName(), "\n";
+echo $app->run(new Config_Ini('config.ini'))->getAppName(), "\n";
+echo $app->run(new Config_Php('config.php'))->getAppName(), "\n";
+
+// Fluent Interface
+
 class Application
 {
     protected $_config = [];
     protected $_appName = 'App';
 
-    public function run($filePath)
+    public function run(Config $config)
     {
-        $this->_config = new Config_Json($filePath);
+        $this->_config = $config;
         $this->_appName = $this->_config->appName;
         return $this;
     }
@@ -58,8 +66,3 @@ class Config_Php extends Config
         $this->_data = include($filePath);
     }
 }
-
-$app = new Application();
-//echo $app->run('config.ini')->getAppName(), "\n";
-//echo $app->run('config.json')->getAppName(), "\n";
-//echo $app->run('config.php')->getAppName(), "\n";
