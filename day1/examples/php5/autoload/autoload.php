@@ -1,12 +1,13 @@
 <?php
 
-defined('CLASSES_PATH') || define('CLASSES_PATH', __DIR__);
+defined('CLASSES_PATH')
+    || define('CLASSES_PATH', __DIR__);
 
-function loadClass($className)
+function loadClass1($className)
 {
-    $className = str_replace('\\', '/', $className);
-    $classPath = CLASSES_PATH . '/' . $className . '.php';
-    echo $classPath . PHP_EOL;
+    $classPath = CLASSES_PATH . '/'
+               . str_replace('\\', '/', $className) . '.php';
+    // echo $classPath . PHP_EOL;
     if (file_exists($classPath)) {
         include $classPath;
         return true;
@@ -14,9 +15,31 @@ function loadClass($className)
     return false;
 }
 
-spl_autoload_register('loadClass');
+function loadClass2($className)
+{
+    $classPath = strtolower($className) . '.class.php';
+    // echo $classPath . PHP_EOL;
+    if (file_exists($classPath)) {
+        include $classPath;
+        return true;
+    }
+    return false;
+}
+
+function notExistsClass($className)
+{
+    echo "Class '$className' not exists." . PHP_EOL;
+    eval('class ' . $className . '{}');
+    return true;
+}
+
+spl_autoload_register('loadClass1');
+spl_autoload_register('loadClass2');
+spl_autoload_register('notExistsClass');
+
+var_dump(spl_autoload_functions());
 
 $car = new AutoloadExample\Car();
 $human = new AutoloadExample\Human();
-// $animal = new AutoloadExample\Animal();
-var_dump($car, $human);
+$test = new Test();
+$hello = new Hello();

@@ -1,4 +1,4 @@
 <?php
 $rootNode = new Node('root');
-$nodes = $rootNode->getTree();
-$entries = $root->getDataByNodes($nodes);
+$node = $rootNode->getSubNode('test');
+$entries = $root->getDataByNode($node);
