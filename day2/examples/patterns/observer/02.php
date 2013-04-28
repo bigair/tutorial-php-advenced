@@ -1,11 +1,13 @@
 <?php
 namespace Observer02;
 
+// 觀察者 (訂閱者)
 interface Observer
 {
     public function update(Subject $subject);
 }
 
+// 被觀察者 (主題/報紙)
 interface Subject
 {
     public function register($name, Observer $observer);
@@ -37,13 +39,15 @@ class Member implements Subject
 
     public function save()
     {
-        $this->_saveData();
-        $this->notify();
+        if ($this->_saveData()) {
+            $this->notify();
+        }
     }
 
     protected function _saveData()
     {
         echo "會員資料寫入資料庫\n";
+        return true;
     }
 
     public function notify()
@@ -63,6 +67,7 @@ class Coupon implements Observer
     }
 }
 
+// Gearman: Message Queue
 class Mail implements Observer
 {
     public function update(Subject $subject)
@@ -71,7 +76,19 @@ class Mail implements Observer
     }
 }
 
+class Api implements Observer
+{
+
+
+    public function update(Subject $subject)
+    {
+        $client = new HttpClient();
+        echo "寫入 API\n";
+    }
+}
+
 $member = new Member();
 $member->register('coupon', new Coupon());
 $member->register('mail', new Mail());
+$member->register('api', new Api());
 $member->save();

@@ -2,6 +2,12 @@
 
 namespace SimpleFactory01;
 
+$app = new Application();
+echo $app->run('config.ini')->getAppName(), "\n";
+echo $app->run('config.json')->getAppName(), "\n";
+echo $app->run('config.php')->getAppName(), "\n";
+echo $app->run('config.yaml')->getAppName(), "\n";
+
 class Application
 {
     protected $_config = [];
@@ -77,9 +83,3 @@ class Config_Php extends Config
         $this->_data = include($filePath);
     }
 }
-
-$app = new Application();
-echo $app->run('config.ini')->getAppName(), "\n";
-echo $app->run('config.json')->getAppName(), "\n";
-echo $app->run('config.php')->getAppName(), "\n";
-echo $app->run('config.yaml')->getAppName(), "\n";

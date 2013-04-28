@@ -15,6 +15,7 @@ abstract class Auth
 
     public function add(Auth $auth)
     {
+        throw new Exception('不能加進來');
     }
 
     public function display($depth = 0)
